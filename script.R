@@ -41,7 +41,7 @@ par.estim <- data.frame(rbind(coef(m4), coef(m22), coef(m56)))
 
 par.estim$Temp <-c(4, 22, 56)
 
-#library(ggplot2)
+library(ggplot2)
 
 ggplot(par.estim) + geom_point(aes(x = Temp, y = log(rho))) +
   geom_smooth(aes(x = Temp, y = log(rho)), method = "lm")
@@ -187,3 +187,4 @@ sims <- foreach(i = 1:nrow(Temps.df), .combine = c) %dopar% {
 Sup.fluc <- data.frame(Temps.df[, c("x", "y")], Sup = sims)
 Sup.fluc.r <- rast(Sup.fluc)
 plot(Sup.fluc.r)
+
